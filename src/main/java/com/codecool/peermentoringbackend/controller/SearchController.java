@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/search")
-@CrossOrigin(origins = "https://keen-murdock-7f431a.netlify.app")
+@CrossOrigin(origins = "https://keen-murdock-7f431a.netlify.app", allowCredentials = "true")
 public class SearchController {
 
     @Autowired
