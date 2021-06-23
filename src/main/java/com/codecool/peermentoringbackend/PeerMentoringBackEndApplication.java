@@ -38,31 +38,31 @@ public class PeerMentoringBackEndApplication {
         SpringApplication.run(PeerMentoringBackEndApplication.class, args);
     }
 
-    @Bean
-    public CommandLineRunner init() {
-        return args -> {
-
-            TechnologyEntity py = TechnologyEntity.builder().technologyTag("py").build();
-            TechnologyEntity python = TechnologyEntity.builder().technologyTag("Python").build();
-            TechnologyEntity flask = TechnologyEntity.builder().technologyTag("Flask").build();
-            TechnologyEntity postgreSQL = TechnologyEntity.builder().technologyTag("PostgreSQL").build();
-            TechnologyEntity java = TechnologyEntity.builder().technologyTag("Java").build();
-            TechnologyEntity jdbc = TechnologyEntity.builder().technologyTag("JDBC").build();
-            TechnologyEntity spring = TechnologyEntity.builder().technologyTag("Spring").build();
-            TechnologyEntity lombok = TechnologyEntity.builder().technologyTag("Lombok").build();
-            technologyTagRepository.saveAll(Arrays.asList(py, python, flask, postgreSQL, java, jdbc, spring, lombok));
-
-            UserEntity testUser = UserEntity.builder().firstName("test").lastName("test").email("test@codecool.com").city("Budapest").country("Hungary").username("test").password("{bcrypt}$2a$10$/A5s3AjcKnRem6lS3uwn5.hV.xZzqy6SK8mn4uRyBQXMj5RcHIUG6").build();
-            userRepository.save(testUser);
-
-            ProjectEntity askMate = ProjectEntity.builder().projectTag("Ask Mate").build();
-            ProjectEntity sixHandshakes = ProjectEntity.builder().projectTag("Six Handshakes").build();
-            ProjectEntity hangman = ProjectEntity.builder().projectTag("Hangman").build();
-
-            projectTagRepository.saveAll(Arrays.asList(askMate, sixHandshakes, hangman));
-
-        };
-    }
+//    @Bean
+//    public CommandLineRunner init() {
+//        return args -> {
+//
+//            TechnologyEntity py = TechnologyEntity.builder().technologyTag("py").build();
+//            TechnologyEntity python = TechnologyEntity.builder().technologyTag("Python").build();
+//            TechnologyEntity flask = TechnologyEntity.builder().technologyTag("Flask").build();
+//            TechnologyEntity postgreSQL = TechnologyEntity.builder().technologyTag("PostgreSQL").build();
+//            TechnologyEntity java = TechnologyEntity.builder().technologyTag("Java").build();
+//            TechnologyEntity jdbc = TechnologyEntity.builder().technologyTag("JDBC").build();
+//            TechnologyEntity spring = TechnologyEntity.builder().technologyTag("Spring").build();
+//            TechnologyEntity lombok = TechnologyEntity.builder().technologyTag("Lombok").build();
+//            technologyTagRepository.saveAll(Arrays.asList(py, python, flask, postgreSQL, java, jdbc, spring, lombok));
+//
+//            UserEntity testUser = UserEntity.builder().firstName("test").lastName("test").email("test@codecool.com").city("Budapest").country("Hungary").username("test").password("{bcrypt}$2a$10$/A5s3AjcKnRem6lS3uwn5.hV.xZzqy6SK8mn4uRyBQXMj5RcHIUG6").build();
+//            userRepository.save(testUser);
+//
+//            ProjectEntity askMate = ProjectEntity.builder().projectTag("Ask Mate").build();
+//            ProjectEntity sixHandshakes = ProjectEntity.builder().projectTag("Six Handshakes").build();
+//            ProjectEntity hangman = ProjectEntity.builder().projectTag("Hangman").build();
+//
+//            projectTagRepository.saveAll(Arrays.asList(askMate, sixHandshakes, hangman));
+//
+//        };
+//    }
 
 
 }
