@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = "https://keen-murdock-7f431a.netlify.app/")
+@CrossOrigin(origins = "https://keen-murdock-7f431a.netlify.app")
 public class UserController {
 
     private final AuthenticationManager authenticationManager;

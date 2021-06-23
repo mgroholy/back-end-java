@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/review")
-@CrossOrigin(origins = "https://keen-murdock-7f431a.netlify.app/")
+@CrossOrigin(origins = "https://keen-murdock-7f431a.netlify.app")
 public class ReviewController {
 
     @Autowired

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController
-@CrossOrigin(origins = "https://keen-murdock-7f431a.netlify.app/")
+@CrossOrigin(origins = "https://keen-murdock-7f431a.netlify.app")
 @RequestMapping("/reg")
 public class RegistrationController {
 

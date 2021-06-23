@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/filter")
-@CrossOrigin(origins = "https://keen-murdock-7f431a.netlify.app/")
+@CrossOrigin(origins = "https://keen-murdock-7f431a.netlify.app")
 public class FilterController {
 
     @Autowired

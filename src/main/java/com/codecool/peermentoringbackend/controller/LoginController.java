@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin(origins = "https://keen-murdock-7f431a.netlify.app/")
+@CrossOrigin(origins = "https://keen-murdock-7f431a.netlify.app")
 @RequestMapping("/auth")
 public class LoginController {
 
