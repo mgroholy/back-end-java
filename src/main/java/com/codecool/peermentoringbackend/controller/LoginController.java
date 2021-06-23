@@ -68,8 +68,7 @@ public class LoginController {
             ResponseCookie cookie = ResponseCookie
                     .from("authentication", token)
                     .maxAge(3600)  //18 hrs
-                    .path("/").httpOnly(true).secure(false).build();
-
+                    .path("/").httpOnly(true).secure(true).sameSite("None").build();
 
 
             Map<Object, Object> model = new HashMap<>();
