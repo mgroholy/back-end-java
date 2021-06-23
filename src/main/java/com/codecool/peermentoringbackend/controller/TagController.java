@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tags")
+@CrossOrigin(origins = "https://keen-murdock-7f431a.netlify.app/")
 public class TagController {
 
     @Autowired
