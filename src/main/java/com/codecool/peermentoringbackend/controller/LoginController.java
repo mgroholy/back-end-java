@@ -87,7 +87,7 @@ public class LoginController {
         ResponseCookie cookie = ResponseCookie
                 .from("authentication", "")
                 .maxAge(0)
-                .path("/").httpOnly(false).secure(false).build();
+                .path("/").httpOnly(true).secure(true).sameSite("None").build();
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body("");
     }
 
