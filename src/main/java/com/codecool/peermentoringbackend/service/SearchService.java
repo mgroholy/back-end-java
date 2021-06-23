@@ -28,6 +28,7 @@ public class SearchService {
         }
 
         queryBuilder.append(String.join(" and ", whereClause));
+        queryBuilder.append(" order by q.submissionTime desc");
         Query jpaQuery = entityManager.createQuery(queryBuilder.toString());
 
         for(String key :parameterMap.keySet()) {
@@ -37,7 +38,7 @@ public class SearchService {
         List<QuestionEntity> resultList = jpaQuery.getResultList();
 
         for (QuestionEntity questionEntity: resultList){
-            questionEntity.setTransientData();
+            questionEntity.setUserData();
         }
 
 

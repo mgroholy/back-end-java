@@ -67,9 +67,8 @@ public class LoginController {
             String token = jwtTokenServices.createToken(username, roles);
             ResponseCookie cookie = ResponseCookie
                     .from("authentication", token)
-                    .maxAge(3600)  //1 hr
-                    .path("/").httpOnly(false).secure(false).build();
-
+                    .maxAge(3600)  //18 hrs
+                    .path("/").httpOnly(true).secure(true).sameSite("None").build();
 
 
             Map<Object, Object> model = new HashMap<>();

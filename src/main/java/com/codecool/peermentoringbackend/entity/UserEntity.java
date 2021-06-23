@@ -1,6 +1,7 @@
 package com.codecool.peermentoringbackend.entity;
 
 import com.codecool.peermentoringbackend.model.Module_;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -78,4 +79,22 @@ public class UserEntity {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     Set<ProjectEntity> projectTags = new HashSet<>();
+
+    @ManyToMany
+    @JsonIgnore
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    Set<QuestionEntity> votedQuestions = new HashSet<>();
+
+    @Singular
+    @OneToMany(mappedBy = "reviewedUser", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    Set<ReviewEntity> reviews = new HashSet<>();
+
+    @JsonIgnore
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private DiscordEntity discordEntity;
 }

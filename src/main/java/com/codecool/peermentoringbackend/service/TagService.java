@@ -1,10 +1,13 @@
 package com.codecool.peermentoringbackend.service;
 
 import com.codecool.peermentoringbackend.entity.ProjectEntity;
+import com.codecool.peermentoringbackend.entity.QuestionEntity;
 import com.codecool.peermentoringbackend.entity.TechnologyEntity;
 import com.codecool.peermentoringbackend.entity.UserEntity;
+import com.codecool.peermentoringbackend.model.QuestionTagModel;
 import com.codecool.peermentoringbackend.model.TagsModel;
 import com.codecool.peermentoringbackend.repository.ProjectTagRepository;
+import com.codecool.peermentoringbackend.repository.QuestionRepository;
 import com.codecool.peermentoringbackend.repository.TechnologyTagRepository;
 import com.codecool.peermentoringbackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,9 @@ public class TagService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private QuestionRepository questionRepository;
 
     public boolean addNewProjectTag(ProjectEntity tag, String username) {
         boolean b = projectTagRepository.existsProjectEntityByProjectTag(tag.getProjectTag());
@@ -69,6 +75,29 @@ public class TagService {
 
     }
 
+    public boolean addNewTechnologyTagToQuestion(String tag, QuestionEntity questionEntity) {
+        boolean b = technologyTagRepository.existsTechnologyEntityByTechnologyTag(tag);
+
+        if(b) {
+            TechnologyEntity tagToAdd = technologyTagRepository.findTechnologyEntityByTechnologyTag(tag);
+
+            technologyTagRepository.save(tagToAdd);
+            tagToAdd.addQuestion(questionEntity);
+            return true;
+        } else {
+            TechnologyEntity newTag = TechnologyEntity.builder()
+                    .technologyTag(tag)
+                    .userEntities(new HashSet<>())
+                    .questionEntities(new HashSet<>())
+                    .build();
+
+            technologyTagRepository.save(newTag);
+            newTag.addQuestion(questionEntity);
+            return true;
+        }
+
+    }
+
     public TagsModel getLoggedInUserTags(String username) {
 
         UserEntity distinctByUsername = userRepository.findDistinctByUsername(username);
@@ -97,5 +126,19 @@ public class TagService {
         UserEntity userEntity = userRepository.findDistinctByUsername(username);
         technologyEntity.removeUser(userEntity);
         technologyTagRepository.save(technologyEntity);
+    }
+
+    public boolean removeTechnologyTagFromQuestion(QuestionTagModel tagModel) {
+        QuestionEntity question = questionRepository.findQuestionEntityById(tagModel.getQuestionId());
+        if (question == null ) return false;
+        TechnologyEntity technologyTag = technologyTagRepository.findTechnologyEntityByTechnologyTag(tagModel.getTechnologyTag());
+        if (technologyTag == null ) return false;
+        technologyTag.removeQuestion(question);
+        technologyTagRepository.save(technologyTag);
+        return true;
+    }
+
+    public List<TechnologyEntity> getAllTechnologyTag() {
+        return technologyTagRepository.findAll();
     }
 }
