@@ -27,19 +27,17 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .requiresChannel()
-                .and()
                 .httpBasic().disable()
-
                 .csrf().disable()
-                .cors()
-                .and()
-
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .cors()
                 .and()
                 .authorizeRequests()
 //                .antMatchers(HttpMethod.GET, "/**").permitAll()
 //                .antMatchers(HttpMethod.POST, "/**").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "/reg/registration").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "/auth/login").permitAll()
                 .antMatchers("/user/**").authenticated()
                 .antMatchers("/tags/**").authenticated()
                 .antMatchers("/tags").authenticated()
@@ -52,14 +50,13 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
                 .antMatchers("/question/**").authenticated()
                 .antMatchers("/answers").authenticated()
                 .antMatchers("/answers/**").authenticated()
-              .antMatchers("/auth/authentication").permitAll()
+                .antMatchers("/auth/authentication").permitAll()
                 .antMatchers("/auth/logout").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/auth/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/reg/registration").permitAll()
 
-                .antMatchers(HttpMethod.OPTIONS, "/reg/registration").permitAll()
-                .antMatchers(HttpMethod.OPTIONS, "/auth/login").permitAll()
+
 //                .antMatchers("/user-service/user/getUser/**").authenticated()
 //                .antMatchers("/notes-service/**").authenticated()
 
