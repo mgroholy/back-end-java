@@ -35,12 +35,15 @@ public class ValidatorService {
         return validFirstName && validLastName && validPassword && validUsername;
     }
 
+
     private boolean isAlpha(String string) {
         return string.matches("^(?U)[\\p{Alpha}\\-'. ]+");
     }
 
+    //^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$
     private boolean isAlphaNumWithUnderscore(String string) {
-        return string.matches("^(?U)[\\p{Alpha}\\-'. _]+");
+//        return string.matches("^(?U)[\\p{Alpha}\\-'. _]+");
+        return string.matches("^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$");
     }
 
     private boolean isValidPasswordSecure(String password) {

@@ -150,10 +150,12 @@ return true;
         }
         if(!questionEntity.getVoters().contains(userEntity)){
             questionEntity.addUser(userEntity);
-            Query jpaQuery = entityManager.createQuery("UPDATE QuestionEntity q SET q.vote = q.vote + :vote where q.id = :questionId");
-            jpaQuery.setParameter("questionId", questionId);
-            jpaQuery.setParameter("vote", vote.getVote());
-            jpaQuery.executeUpdate();
+            questionEntity.setVote(questionEntity.getVote()+vote.getVote());
+            questionRepository.save(questionEntity);
+//            Query jpaQuery = entityManager.createQuery("UPDATE QuestionEntity q SET q.vote = q.vote + :vote where q.id = :questionId");
+//            jpaQuery.setParameter("questionId", questionId);
+//            jpaQuery.setParameter("vote", vote.getVote());
+//            jpaQuery.executeUpdate();
 
             return new RegResponse(true, "success");
         } else{
